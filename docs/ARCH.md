@@ -44,12 +44,20 @@ User (1条记录)
   │     ├── PetAppearance (皮肤/装饰)
   │     └── PetHome (家具)
   │
-  └── Vocab (词汇系统)
-        ├── VocabWord (单词)
-        ├── VocabCollection (已收集)
-        ├── VocabTopic (主题分组)
-        ├── PhraseCollocation (固定搭配)
-        └── ConfusableWord (易混词)
+  ├── Vocab (词汇系统)
+  │     ├── VocabWord (单词)
+  │     ├── VocabCollection (已收集)
+  │     ├── VocabTopic (主题分组)
+  │     ├── PhraseCollocation (固定搭配)
+  │     └── ConfusableWord (易混词)
+  │
+  ├── Cloze (完形填空)
+  │     ├── ClozePassage (文章)
+  │     └── ClozeBlank (空格)
+  │
+  └── Reading (阅读理解)
+        ├── TowerFloor (高塔楼层)
+        └── ReadingQuestion (题目)
 ```
 
 ### 核心表设计
@@ -68,7 +76,7 @@ CREATE TABLE skills (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,                      -- 如 "一般现在时"
     display_name TEXT NOT NULL,              -- 如 "时态山脉·新手村"
-    category TEXT NOT NULL,                  -- tense/preposition/voice/clause/article
+    category TEXT NOT NULL,                  -- grammar(语法) / vocab(词汇) / reading(阅读) / cloze(完形)
     difficulty INTEGER DEFAULT 1,            -- 1-5
     unlock_requirement TEXT,                 -- JSON: {"level": 3, "prev_skill": [1,2]}
     boss_name TEXT,                          -- Boss 名字
@@ -80,7 +88,7 @@ CREATE TABLE skills (
 CREATE TABLE questions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     skill_id INTEGER REFERENCES skills(id),
-    question_type TEXT NOT NULL,             -- choice / word_form / sentence_transform / cloze
+    question_type TEXT NOT NULL,             -- choice / word_form / sentence_transform / cloze_word_selection / cloze_multiple_choice / vocab_shoot / vocab_spell / collocation / confusable / reading_choice / reading_true_false / reading_short_answer
     difficulty INTEGER DEFAULT 1,            -- 1-3
     content TEXT NOT NULL,                   -- JSON
     source TEXT DEFAULT 'manual',            -- manual / ai_generated / past_exam
