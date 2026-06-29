@@ -239,6 +239,57 @@ CREATE TABLE confusable_words (
     example_correct TEXT NOT NULL,           -- 正确用法例句
     example_wrong TEXT DEFAULT NULL          -- 常见错误例句
 );
+
+-- ⭐ 完形填空文章库（迷宫逃脱）
+CREATE TABLE cloze_passages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    skill_id INTEGER REFERENCES skills(id), -- 关联语法点
+    passage_type TEXT NOT NULL,              -- word_selection(选词) / multiple_choice(四选一)
+    title TEXT NOT NULL,                     -- 文章标题
+    passage_text TEXT NOT NULL,              -- 全文（含空格标记 {{0}}{{1}}...）
+    word_bank TEXT DEFAULT NULL,             -- 类型A: JSON 词库 ["word1","word2",...]
+    word_bank_interference TEXT DEFAULT NULL,-- 类型A: 干扰词 JSON ["干扰1","干扰2",...]
+    difficulty INTEGER DEFAULT 1,
+    total_blanks INTEGER DEFAULT 6,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ⭐ 完形填空空格题目
+CREATE TABLE cloze_blanks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    passage_id INTEGER REFERENCES cloze_passages(id),
+    blank_index INTEGER NOT NULL,            -- 第几个空 (0-based)
+    options TEXT DEFAULT NULL,               -- 类型B: JSON 选项 ["A","B","C","D"]
+    correct_answer TEXT NOT NULL,            -- 选词类型存word, 四选一存"A"/"B"
+    explanation TEXT DEFAULT NULL            -- 解析
+);
+
+-- ⭐ 📚 阅读高塔（阅读理解）
+CREATE TABLE reading_tower_floors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    floor_number INTEGER NOT NULL,           -- 第几层
+    difficulty INTEGER DEFAULT 1,            -- 1-3 ⭐
+    title TEXT NOT NULL,                     -- 文章标题
+    category TEXT NOT NULL,                  -- animal/tech/sports/funny/story/other
+    passage_text TEXT NOT NULL,              -- 文章正文
+    word_count INTEGER DEFAULT 0,
+    word_hints TEXT DEFAULT NULL,            -- JSON: {"word": "chinese"} 页面可点击查词
+    fun_fact TEXT DEFAULT NULL,              -- 趣味彩蛋（答完显示）
+    is_boss INTEGER DEFAULT 0,               -- 是否为Boss层
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ⭐ 阅读理解题目
+CREATE TABLE reading_questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    floor_id INTEGER REFERENCES reading_tower_floors(id),
+    question_type TEXT NOT NULL,              -- choice / true_false / short_answer
+    question_text TEXT NOT NULL,             -- 题目
+    options TEXT NOT NULL,                   -- JSON 选项
+    correct_answer TEXT NOT NULL,            -- "A" / "T" / "F" / "B"
+    explanation TEXT DEFAULT NULL,           -- 答案解析
+    sort_order INTEGER DEFAULT 0
+);
 ```
 
 ---
@@ -287,7 +338,26 @@ CREATE TABLE confusable_words (
 | GET | /api/v1/vocab/confusable | 易混词题目 | {question_id, sentence, options: [4 个易混词], group_id} |
 | POST | /api/v1/vocab/confusable/answer | 提交辨析答案 | {is_correct, explanation, tip_card_unlocked?} |
 
-### 3.4 成就 & 统计
+### 3.4 完形填空（迷宫逃脱）
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/cloze | 获取完形填空关卡列表 | [{id, title, passage_type, difficulty, progress}] |
+| GET | /api/v1/cloze/:id | 获取完形填空完整题目 | {passage, blanks, word_bank, type} |
+| POST | /api/v1/cloze/:id/submit | 提交所有空答案 | {correct_count, total, earned_coins, escaped?} |
+| POST | /api/v1/cloze/:id/blank/:idx | 逐空提交（实时反馈） | {is_correct, explanation, moved_forward?} |
+
+### 3.5 阅读理解（阅读高塔）
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/reading/tower | 获取高塔楼层状态 | [{floor, title, category, stars, completed}] |
+| GET | /api/v1/reading/floor/:id | 获取阅读题目 | {passage, word_hints, questions: [...]} |
+| POST | /api/v1/reading/floor/:id/submit | 提交所有答案 | {correct_count, total, earned_coins, fun_fact, floor_completed} |
+| POST | /api/v1/reading/floor/:id/question/:qid | 逐题提交 | {is_correct, explanation} |
+| GET | /api/v1/reading/word-hint/:word | 查词（免费） | {word, chinese} |
+
+### 3.6 成就 & 统计
 
 | 方法 | 路径 | 描述 |
 |---|---|---|
