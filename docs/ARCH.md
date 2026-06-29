@@ -55,9 +55,13 @@ User (1条记录)
   │     ├── ClozePassage (文章)
   │     └── ClozeBlank (空格)
   │
-  └── Reading (阅读理解)
-        ├── TowerFloor (高塔楼层)
-        └── ReadingQuestion (题目)
+  ├── Reading (阅读理解)
+  │     ├── TowerFloor (高塔楼层)
+  │     └── ReadingQuestion (题目)
+  │
+  └── Listening (听力)
+        ├── ListeningPassage (录音题材)
+        └── ListeningQuestion (听力题目)
 ```
 
 ### 核心表设计
@@ -298,6 +302,34 @@ CREATE TABLE reading_questions (
     explanation TEXT DEFAULT NULL,           -- 答案解析
     sort_order INTEGER DEFAULT 0
 );
+
+-- ⭐ 🔊 听力录音题材（电波台）
+CREATE TABLE listening_passages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    channel TEXT NOT NULL,                    -- campus / daily / nature / story / exam
+    channel_display TEXT NOT NULL,            -- "FM 88.5 校园生活"
+    title TEXT NOT NULL,
+    difficulty INTEGER DEFAULT 1,            -- 1-3
+    audio_file TEXT NOT NULL,                 -- "audio/listening/campus_01.mp3"
+    transcript TEXT NOT NULL,                 -- 录音原文（答完后展示）
+    duration_seconds INTEGER DEFAULT 0,
+    word_hints TEXT DEFAULT NULL,             -- JSON 可点词查义
+    play_count_limit INTEGER DEFAULT 2,       -- 最多听几次（默认2次）
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ⭐ 🔊 听力题目
+CREATE TABLE listening_questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    passage_id INTEGER REFERENCES listening_passages(id),
+    question_type TEXT NOT NULL,              -- picture_selection / dialogue / true_false / fill_blank / long_dialogue
+    question_text TEXT NOT NULL,
+    options TEXT NOT NULL,                    -- JSON
+    correct_answer TEXT NOT NULL,
+    image_file TEXT DEFAULT NULL,             -- 听句选图用
+    explanation TEXT DEFAULT NULL,
+    sort_order INTEGER DEFAULT 0
+);
 ```
 
 ---
@@ -365,7 +397,24 @@ CREATE TABLE reading_questions (
 | POST | /api/v1/reading/floor/:id/question/:qid | 逐题提交 | {is_correct, explanation} |
 | GET | /api/v1/reading/word-hint/:word | 查词（免费） | {word, chinese} |
 
-### 3.6 成就 & 统计
+### 3.6 听力理解（电波台）
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/listening/channels | 获取电波台频道列表 | [{channel, display_name, progress, count}] |
+| GET | /api/v1/listening/channel/:ch | 获取频道内听力列表 | [{id, title, difficulty, duration, completed}] |
+| GET | /api/v1/listening/passage/:id | 获取听力题目（含音频路径） | {passage, audio_file, questions: [...], play_count, max_plays} |
+| POST | /api/v1/listening/passage/:id/play | 记录播放次数 | {play_count_remaining} |
+| POST | /api/v1/listening/passage/:id/submit | 提交答案 | {correct_count, total, earned_coins, transcript} |
+| POST | /api/v1/listening/passage/:id/answer/:qid | 逐题提交（实时反馈） | {is_correct, explanation} |
+
+### 3.7 单词发音
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/pronounce/:word | 获取单词发音（若已有 MP3 直接返回，否则用 Web Speech API） | {audio_url, word, use_speech_api} |
+
+### 3.8 成就 & 统计
 
 | 方法 | 路径 | 描述 |
 |---|---|---|
