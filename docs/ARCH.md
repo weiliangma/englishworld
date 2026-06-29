@@ -39,10 +39,17 @@ User (1条记录)
   ├── WrongBook (错题本)
   ├── Achievement (已解锁成就)
   │
-  └── Pet (宠物)
-        ├── PetStats (饱腹/快乐/精力/干净)
-        ├── PetAppearance (皮肤/装饰)
-        └── PetHome (家具)
+  ├── Pet (宠物)
+  │     ├── PetStats (饱腹/快乐/精力/干净)
+  │     ├── PetAppearance (皮肤/装饰)
+  │     └── PetHome (家具)
+  │
+  └── Vocab (词汇系统)
+        ├── VocabWord (单词)
+        ├── VocabCollection (已收集)
+        ├── VocabTopic (主题分组)
+        ├── PhraseCollocation (固定搭配)
+        └── ConfusableWord (易混词)
 ```
 
 ### 核心表设计
@@ -174,6 +181,64 @@ CREATE TABLE pet_dialogues (
     dialogue TEXT NOT NULL,
     probability REAL DEFAULT 1.0             -- 权重
 );
+
+-- ⭐ 词汇主题（词汇森林的分区）
+CREATE TABLE vocab_topics (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,                      -- 如 "动物"、"食物"
+    icon TEXT DEFAULT '📦',                  -- 主题图标 emoji
+    display_name TEXT NOT NULL,              -- 如 "动物乐园"
+    description TEXT,
+    sort_order INTEGER DEFAULT 0,
+    word_count INTEGER DEFAULT 0,            -- 该主题包含的单词数
+    boss_name TEXT DEFAULT '词海巨怪·幼体', -- 该主题 Boss 名
+    boss_hp INTEGER DEFAULT 5
+);
+
+-- ⭐ 单词库
+CREATE TABLE vocab_words (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    topic_id INTEGER REFERENCES vocab_topics(id),
+    word TEXT NOT NULL,                      -- 英文单词
+    chinese TEXT NOT NULL,                   -- 中文释义
+    phonetic TEXT DEFAULT NULL,              -- 音标（可选）
+    part_of_speech TEXT DEFAULT NULL,        -- 词性
+    difficulty INTEGER DEFAULT 1,            -- 1-3
+    example_sentence TEXT DEFAULT NULL,      -- 例句
+    missing_letters TEXT DEFAULT NULL,       -- 拼写题缺字母位置: "a_v_n_u_e"
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- ⭐ 用户已收集的单词（"单词收集册"）
+CREATE TABLE vocab_collection (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word_id INTEGER REFERENCES vocab_words(id),
+    collected_at TIMESTAMP DEFAULT NOW(),
+    mastered INTEGER DEFAULT 0,
+    wrong_count INTEGER DEFAULT 0,
+    UNIQUE(word_id)
+);
+
+-- ⭐ 固定搭配库（词组连连看）
+CREATE TABLE phrase_collocations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    left_part TEXT NOT NULL,                 -- "look"
+    right_part TEXT NOT NULL,                -- "after"
+    collocation TEXT NOT NULL,               -- "look after"
+    chinese TEXT NOT NULL,                   -- "照顾"
+    difficulty INTEGER DEFAULT 1
+);
+
+-- ⭐ 易混词辨析库
+CREATE TABLE confusable_words (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER NOT NULL,              -- 同一组易混词共享一个 group_id
+    word TEXT NOT NULL,
+    chinese TEXT NOT NULL,
+    usage_note TEXT NOT NULL,                -- 一句话辨析
+    example_correct TEXT NOT NULL,           -- 正确用法例句
+    example_wrong TEXT DEFAULT NULL          -- 常见错误例句
+);
 ```
 
 ---
@@ -205,7 +270,24 @@ CREATE TABLE pet_dialogues (
 | POST | /api/v1/pet/shop/buy | 购买物品 | {success, item, coins_left} |
 | POST | /api/v1/pet/shop/equip | 装备/使用物品 | {success, equipped} |
 
-### 3.3 成就 & 统计
+### 3.3 词汇
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/vocab/topics | 词汇森林主题列表 | [{id, name, icon, word_count, progress, boss_name}] |
+| GET | /api/v1/vocab/topics/:id/words | 主题下的单词列表（含收集状态） | [{word_id, word, chinese, collected, mastered}] |
+| POST | /api/v1/vocab/collect | 答题正确→收集单词 | {success, word, reward_coins, pet_learned?} |
+| GET | /api/v1/vocab/collection | 已收集单词册 | [{word, chinese, topic, collected_at}] |
+| GET | /api/v1/vocab/shoot | 词义射击题目 | {question_id, chinese, options: [4 个英文]} |
+| POST | /api/v1/vocab/shoot/answer | 提交射击答案 | {is_correct, correct_word, earned_coins} |
+| GET | /api/v1/vocab/spell | 拼写题目 | {question_id, chinese, word_template: "a_v_n_u_e", letters: [可选字母]} |
+| POST | /api/v1/vocab/spell/answer | 提交拼写答案 | {is_correct, correct_word, earned_coins} |
+| GET | /api/v1/vocab/collocation | 连连看题目 | {question_id, lefts: [...], rights: [...], pairs: N} |
+| POST | /api/v1/vocab/collocation/answer | 提交搭配答案 | {is_correct, correct_pairs, earned_coins} |
+| GET | /api/v1/vocab/confusable | 易混词题目 | {question_id, sentence, options: [4 个易混词], group_id} |
+| POST | /api/v1/vocab/confusable/answer | 提交辨析答案 | {is_correct, explanation, tip_card_unlocked?} |
+
+### 3.4 成就 & 统计
 
 | 方法 | 路径 | 描述 |
 |---|---|---|
