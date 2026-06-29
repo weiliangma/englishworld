@@ -153,6 +153,19 @@ CREATE TABLE wrong_book (
     mastered INTEGER DEFAULT 0
 );
 
+-- ⭐ 智能复习调度表
+CREATE TABLE review_schedule (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question_id INTEGER REFERENCES questions(id),
+    vocab_word_id INTEGER REFERENCES vocab_words(id),
+    review_stage INTEGER DEFAULT 0,          -- 0=首次错 1=第1次复习 2=第2次...
+    next_review_at TIMESTAMP NOT NULL,        -- 下次复习时间
+    correct_count INTEGER DEFAULT 0,          -- 连续答对次数
+    last_reviewed_at TIMESTAMP DEFAULT NULL,   -- 上次复习时间
+    is_active INTEGER DEFAULT 1,              -- 是否在复习队列中
+    UNIQUE(question_id, vocab_word_id)        -- 每道题/每个词一条记录
+);
+
 -- ⭐ 宠物主表
 CREATE TABLE pet (
     id INTEGER PRIMARY KEY DEFAULT 1,        -- 永远=1
@@ -414,7 +427,17 @@ CREATE TABLE listening_questions (
 |---|---|---|---|
 | GET | /api/v1/pronounce/:word | 获取单词发音（若已有 MP3 直接返回，否则用 Web Speech API） | {audio_url, word, use_speech_api} |
 
-### 3.8 成就 & 统计
+### 3.8 智能复习
+
+| 方法 | 路径 | 描述 | 返回值 |
+|---|---|---|---|
+| GET | /api/v1/review/due | 获取到期复习题列表 | [{question_id, type, content, stage, days_overdue}] |
+| GET | /api/v1/review/next | 获取下一题（闪电复习用） | {question_id, type, content, progress: "3/5"} |
+| POST | /api/v1/review/answer | 提交复习答案 | {is_correct, next_review_at, stage, earned_coins, mastered?} |
+| GET | /api/v1/review/stats | 复习统计 | {due_count, total_in_queue, mastered_count, streak_days} |
+| POST | /api/v1/review/skip | 跳过本次复习（不惩罚） | {skipped, next_in_queue} |
+
+### 3.9 成就 & 统计
 
 | 方法 | 路径 | 描述 |
 |---|---|---|
@@ -470,7 +493,50 @@ def calculate_stats_decay(last_update, current_time):
 
 ---
 
-## 六、隐私 & 安全
+## 六、⭐ 智能复习算法
+
+```python
+from datetime import datetime, timedelta
+
+# 间隔重复：每次答对后间隔增长
+REVIEW_INTERVALS = {
+    0: timedelta(days=1),    # 第1次复习 → 1天后
+    1: timedelta(days=3),    # 第2次复习 → 3天后
+    2: timedelta(days=7),    # 第3次复习 → 7天后
+    3: timedelta(days=14),   # 第4次复习 → 2周后
+    4: timedelta(days=30),   # 第5次复习 → 30天后
+}
+
+MAX_STAGE = 5  # 第6次答对 → mastered
+
+def calculate_next_review(is_correct: bool, current_stage: int, now: datetime):
+    """计算下次复习时间"""
+    if not is_correct:
+        # 答错了 → 重置到第0阶段，1天后重来
+        return 0, now + timedelta(days=1)
+
+    if current_stage >= MAX_STAGE:
+        # 已经到顶 → 标记已掌握
+        return current_stage, None  # None = mastered
+
+    next_stage = current_stage + 1
+    interval = REVIEW_INTERVALS.get(next_stage, timedelta(days=30))
+    return next_stage, now + interval
+
+def get_due_reviews(review_schedule_rows, now: datetime, limit=5):
+    """从队列中取出到期复习题"""
+    due = [r for r in review_schedule_rows
+           if r['is_active']
+           and r['next_review_at'] <= now
+           and r['next_review_at'] is not None]
+    # 按逾期天数排序：最久的先复习
+    due.sort(key=lambda r: (now - r['next_review_at']).total_seconds(), reverse=True)
+    return due[:limit]
+```
+
+---
+
+## 七、隐私 & 安全
 
 - 无注册、无登录、无手机号、无邮箱
 - 所有学习数据只存本地 SQLite
@@ -480,7 +546,7 @@ def calculate_stats_decay(last_update, current_time):
 
 ---
 
-## 七、宠物对话库示例（JSON）
+## 八、宠物对话库示例（JSON）
 
 ```json
 [
