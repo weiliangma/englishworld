@@ -12,12 +12,14 @@
 englishworld/
 ├── README.md
 └── docs/
-    ├── index.md         ← 文档目录
-    ├── PRD.md           ← 产品需求文档（含听力电台设计）
-    ├── ARCH.md          ← 技术架构文档（含语音合成方案）
-    ├── UX.md            ← 交互原型 & 用户旅程（含收音机界面）
-    ├── RESEARCH.md      ← 竞品调研报告
-    └── AUDIO_PLAN.md    ← 听力和发音技术方案
+    ├── index.md              ← 文档目录
+    ├── PRD.md                ← 产品需求文档（含听力电台设计）
+    ├── ARCH.md               ← 技术架构文档（含语音合成方案）
+    ├── UX.md                 ← 交互原型 & 用户旅程（含收音机界面）
+    ├── RESEARCH.md           ← 竞品调研报告
+    ├── AUDIO_PLAN.md         ← 听力和发音技术方案
+    ├── SYLLABUS.md           ← 中考考点 → 题型映射表
+    └── QUESTIONS_SAMPLE.md   ← 题库 JSON 样例（16种题型）
 ```
 
 ## 一句话

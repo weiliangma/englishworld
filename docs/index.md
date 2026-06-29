@@ -11,6 +11,8 @@
 | [UX.md](UX.md) | 交互原型 — 线框图、用户旅程、收音机界面 | ~24,900 |
 | [RESEARCH.md](RESEARCH.md) | 竞品调研 — 11 款产品对比分析、功能缺口评估 | ~6,600 |
 | [AUDIO_PLAN.md](AUDIO_PLAN.md) | 听力和发音技术实现方案（edge-tts + Web Speech API） | ~6,100 |
+| [SYLLABUS.md](SYLLABUS.md) | **中考考点 → 题型映射表** — 每个语法/词汇/阅读/听力点对应什么题型 | ~9,300 |
+| [QUESTIONS_SAMPLE.md](QUESTIONS_SAMPLE.md) | **题库 JSON 样例** — 16 种题型的完整 JSON 数据示例 | ~15,800 |
 
 ---
 
