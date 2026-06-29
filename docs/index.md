@@ -13,6 +13,7 @@
 | [AUDIO_PLAN.md](AUDIO_PLAN.md) | 听力和发音技术实现方案（edge-tts + Web Speech API） | ~6,100 |
 | [SYLLABUS.md](SYLLABUS.md) | **中考考点 → 题型映射表** — 每个语法/词汇/阅读/听力点对应什么题型 | ~9,300 |
 | [QUESTIONS_SAMPLE.md](QUESTIONS_SAMPLE.md) | **题库 JSON 样例** — 16 种题型的完整 JSON 数据示例 | ~15,800 |
+| [DEV_PLAN.md](DEV_PLAN.md) | **开发任务计划** — 11 个阶段、66 个任务、2 周冲刺路线图 | ~17,900 |
 
 ---
 
