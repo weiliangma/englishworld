@@ -10,6 +10,7 @@ import ConfusablePage from './pages/ConfusablePage';
 import ReviewPage from './pages/ReviewPage';
 import WrongBookPage from './pages/WrongBookPage';
 import AchievementsPage from './pages/AchievementsPage';
+import ReadingTowerPage from './pages/ReadingTowerPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/vocab/spell" element={<VocabSpellPage />} />
         <Route path="/vocab/collocation" element={<CollocationPage />} />
         <Route path="/vocab/confusable" element={<ConfusablePage />} />
+        <Route path="/reading" element={<ReadingTowerPage />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/wrong-book" element={<WrongBookPage />} />
         <Route path="/achievements" element={<AchievementsPage />} />

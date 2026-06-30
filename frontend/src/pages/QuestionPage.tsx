@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getQuestions, submitAnswer } from '../services/api';
 import { useGameStore, useUserStore } from '../stores/gameStore';
 
@@ -11,6 +11,7 @@ interface Question {
 
 export default function QuestionPage() {
   const { skillId } = useParams();
+  const navigate = useNavigate();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
@@ -22,7 +23,24 @@ export default function QuestionPage() {
   const { setStats, coins } = useUserStore();
 
   useEffect(() => {
-    if (skillId) getQuestions(Number(skillId)).then(setQuestions);
+    if (skillId) {
+      getQuestions(Number(skillId)).then((data: Question[]) => {
+        if (data.length === 0) return;
+        const firstType = data[0].question_type;
+        // 非 choice 题型→跳转到对应页面
+        if (firstType !== 'choice') {
+          const redirectMap: Record<string, string> = {
+            vocab_shoot: '/vocab/shoot',
+            vocab_spell: '/vocab/spell',
+            collocation: '/vocab/collocation',
+            confusable: '/vocab/confusable',
+          };
+          const target = redirectMap[firstType];
+          if (target) { navigate(target); return; }
+        }
+        setQuestions(data);
+      });
+    }
   }, [skillId]);
 
   const q = questions[current];
