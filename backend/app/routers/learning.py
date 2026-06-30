@@ -6,7 +6,7 @@ from pydantic import BaseModel
 import json
 
 from ..database import get_db
-from ..models.question import Skill, Question, StudyRecord, WrongBook, ReviewSchedule
+from ..models.question import Skill, Question, StudyRecord, WrongBook, ReviewSchedule, Achievement, UserAchievement
 from ..models.user import UserStats
 
 router = APIRouter(prefix="/api/v1", tags=["learning"])
@@ -184,3 +184,36 @@ def submit_answer(data: AnswerSubmit, db: Session = Depends(get_db)):
         "new_level": stats.level if level_up else None,
         "explanation": content.get("explanation", None),
     }
+
+
+# ─── Wrong Book ───────────────────────────────────────
+
+@router.get("/wrong-book")
+def get_wrong_book(db: Session = Depends(get_db)):
+    items = db.query(WrongBook).order_by(WrongBook.last_wrong_at.desc()).limit(50).all()
+    return [{
+        "id": w.id,
+        "question_id": w.question_id,
+        "wrong_count": w.wrong_count,
+        "last_wrong_at": str(w.last_wrong_at),
+        "mastered": bool(w.mastered),
+    } for w in items]
+
+
+# ─── Achievements ─────────────────────────────────────
+
+@router.get("/achievements")
+def get_achievements_list(db: Session = Depends(get_db)):
+    user_achs = db.query(UserAchievement).all()
+    unlocked_ids = {a.achievement_id for a in user_achs}
+    all_achs = db.query(Achievement).all()
+    if not all_achs:
+        return []
+    return [{
+        "id": a.id,
+        "name": a.name,
+        "display_name": a.display_name,
+        "description": a.description,
+        "icon": a.icon,
+        "unlocked": a.id in unlocked_ids,
+    } for a in all_achs]
