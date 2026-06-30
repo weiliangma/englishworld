@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { getQuestions, submitAnswer } from '../services/api';
+import { getQuestions } from '../services/api';
 import { useGameStore, useUserStore } from '../stores/gameStore';
 
 interface VocabQuestion {
@@ -60,7 +60,7 @@ export default function VocabShootPage() {
   const handleSelect = useCallback(async (answer: string) => {
     if (feedback) return;
     clearInterval(timerRef.current);
-    const timeSpent = Date.now() - startTime.current;
+    Date.now() - startTime.current; // time tracking
     const isCorrect = answer.toUpperCase() === q.content.correct_word.toUpperCase();
     setFeedback(isCorrect ? 'correct' : 'wrong');
 

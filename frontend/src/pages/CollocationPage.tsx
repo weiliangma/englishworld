@@ -13,7 +13,7 @@ const PAIRS = [
 export default function CollocationPage() {
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [connected, setConnected] = useState<Record<string, string>>({});
-  const [feedback, setFeedback] = useState(false);
+  const [feedback] = useState(false);
   const [score, setScore] = useState(0);
   const { setStats, coins } = useUserStore();
 
@@ -35,7 +35,7 @@ export default function CollocationPage() {
 
   const allConnected = PAIRS.every(p => connected[p.left] === p.right);
 
-  const unusedLefts = PAIRS.filter(p => !connected[p.left]);
+
   const usedRights = new Set(Object.values(connected));
   const unusedRights = PAIRS.filter(p => !usedRights.has(p.right));
 

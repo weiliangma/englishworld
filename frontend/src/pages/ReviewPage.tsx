@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getDueReviews, getNextReview, submitReview } from '../services/api';
+import { getDueReviews, submitReview } from '../services/api';
 import { useUserStore } from '../stores/gameStore';
 
 interface ReviewQ {
