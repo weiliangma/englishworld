@@ -1,0 +1,379 @@
+[
+  {
+    "name": "present_simple",
+    "display_name": "一般现在时",
+    "category": "grammar",
+    "difficulty": 1,
+    "boss_name": "时态龙·幼体",
+    "boss_hp": 10,
+    "sort_order": 1,
+    "questions": [
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "The boy _____ to school by bus every day.",
+          "options": [
+            {"label": "A", "text": "go"},
+            {"label": "B", "text": "goes"},
+            {"label": "C", "text": "went"},
+            {"label": "D", "text": "going"}
+          ],
+          "answer": "B",
+          "explanation": "主语 The boy 是第三人称单数，一般现在时动词加 -es。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "My mother _____ breakfast for us every morning.",
+          "options": [
+            {"label": "A", "text": "cook"},
+            {"label": "B", "text": "cooks"},
+            {"label": "C", "text": "cooking"},
+            {"label": "D", "text": "cooked"}
+          ],
+          "answer": "B",
+          "explanation": "My mother 是第三人称单数，every morning 是一般现在时标志。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "They _____ football after school every Friday.",
+          "options": [
+            {"label": "A", "text": "play"},
+            {"label": "B", "text": "plays"},
+            {"label": "C", "text": "playing"},
+            {"label": "D", "text": "played"}
+          ],
+          "answer": "A",
+          "explanation": "They 是复数主语，动词用原形 play。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "_____ your sister like reading books?",
+          "options": [
+            {"label": "A", "text": "Do"},
+            {"label": "B", "text": "Does"},
+            {"label": "C", "text": "Is"},
+            {"label": "D", "text": "Are"}
+          ],
+          "answer": "B",
+          "explanation": "your sister 是第三人称单数，一般疑问句用 Does 开头。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "Tom _____ his homework at 8:00 every evening.",
+          "options": [
+            {"label": "A", "text": "do"},
+            {"label": "B", "text": "does"},
+            {"label": "C", "text": "doing"},
+            {"label": "D", "text": "did"}
+          ],
+          "answer": "B",
+          "explanation": "Tom 第三人称单数，一般现在时用 does。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      }
+    ]
+  },
+  {
+    "name": "present_continuous",
+    "display_name": "现在进行时",
+    "category": "grammar",
+    "difficulty": 2,
+    "boss_name": "时态龙·成长期",
+    "boss_hp": 10,
+    "sort_order": 2,
+    "questions": [
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "Look! The children _____ in the park.",
+          "options": [
+            {"label": "A", "text": "play"},
+            {"label": "B", "text": "plays"},
+            {"label": "C", "text": "are playing"},
+            {"label": "D", "text": "played"}
+          ],
+          "answer": "C",
+          "explanation": "Look! 是现在进行时的标志词，be + doing。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "Listen! Someone _____ the piano in the room.",
+          "options": [
+            {"label": "A", "text": "play"},
+            {"label": "B", "text": "is playing"},
+            {"label": "C", "text": "plays"},
+            {"label": "D", "text": "played"}
+          ],
+          "answer": "B",
+          "explanation": "Listen! 是现在进行时的标志词，Someone 是单数用 is。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "It's 7:00 AM. The Smiths _____ breakfast.",
+          "options": [
+            {"label": "A", "text": "have"},
+            {"label": "B", "text": "is having"},
+            {"label": "C", "text": "are having"},
+            {"label": "D", "text": "has"}
+          ],
+          "answer": "C",
+          "explanation": "The Smiths 指一家人，是复数，用 are having。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "Where is your mother? She _____ in the kitchen.",
+          "options": [
+            {"label": "A", "text": "cooks"},
+            {"label": "B", "text": "is cooking"},
+            {"label": "C", "text": "cook"},
+            {"label": "D", "text": "cooked"}
+          ],
+          "answer": "B",
+          "explanation": "问 Where is... 表明正在发生的事情，用现在进行时。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      }
+    ]
+  },
+  {
+    "name": "past_simple",
+    "display_name": "一般过去时",
+    "category": "grammar",
+    "difficulty": 2,
+    "boss_name": "时态龙·成熟期",
+    "boss_hp": 10,
+    "sort_order": 3,
+    "questions": [
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "She _____ to the cinema with her friends yesterday.",
+          "options": [
+            {"label": "A", "text": "go"},
+            {"label": "B", "text": "goes"},
+            {"label": "C", "text": "went"},
+            {"label": "D", "text": "going"}
+          ],
+          "answer": "C",
+          "explanation": "yesterday 是一般过去时的标志词，go 的过去式是 went。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "Tom _____ a new bike from his parents last birthday.",
+          "options": [
+            {"label": "A", "text": "get"},
+            {"label": "B", "text": "gets"},
+            {"label": "C", "text": "got"},
+            {"label": "D", "text": "getting"}
+          ],
+          "answer": "C",
+          "explanation": "last birthday 是过去时间，get 的过去式是 got。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "They _____ a wonderful time at the party last night.",
+          "options": [
+            {"label": "A", "text": "have"},
+            {"label": "B", "text": "has"},
+            {"label": "C", "text": "had"},
+            {"label": "D", "text": "having"}
+          ],
+          "answer": "C",
+          "explanation": "last night 是过去时间，have 的过去式是 had。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "The old man _____ down and hurt his leg.",
+          "options": [
+            {"label": "A", "text": "fall"},
+            {"label": "B", "text": "falls"},
+            {"label": "C", "text": "fell"},
+            {"label": "D", "text": "falling"}
+          ],
+          "answer": "C",
+          "explanation": "从 hurt 可以看出是过去时，fall 的过去式是 fell。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "He _____ a letter to his friend last week.",
+          "options": [
+            {"label": "A", "text": "write"},
+            {"label": "B", "text": "writes"},
+            {"label": "C", "text": "wrote"},
+            {"label": "D", "text": "written"}
+          ],
+          "answer": "C",
+          "explanation": "last week 是过去时间，write 的过去式是 wrote。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      }
+    ]
+  },
+  {
+    "name": "articles",
+    "display_name": "冠词森林",
+    "category": "grammar",
+    "difficulty": 1,
+    "boss_name": "冠精灵活",
+    "boss_hp": 8,
+    "sort_order": 4,
+    "questions": [
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "There is _____ apple on the table.",
+          "options": [
+            {"label": "A", "text": "a"},
+            {"label": "B", "text": "an"},
+            {"label": "C", "text": "the"},
+            {"label": "D", "text": "/"}
+          ],
+          "answer": "B",
+          "explanation": "apple 以元音音素开头，用 an。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 1,
+        "content": {
+          "stem": "My father is _____ teacher. He works in _____ university.",
+          "options": [
+            {"label": "A", "text": "a, a"},
+            {"label": "B", "text": "a, an"},
+            {"label": "C", "text": "an, a"},
+            {"label": "D", "text": "an, an"}
+          ],
+          "answer": "A",
+          "explanation": "teacher 是辅音开头用 a，university 虽以 u 开头但发音是 /ju:/，也用 a。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      },
+      {
+        "question_type": "choice",
+        "difficulty": 2,
+        "content": {
+          "stem": "_____ sun rises in _____ east.",
+          "options": [
+            {"label": "A", "text": "A, the"},
+            {"label": "B", "text": "The, the"},
+            {"label": "C", "text": "The, an"},
+            {"label": "D", "text": "A, a"}
+          ],
+          "answer": "B",
+          "explanation": "太阳是独一无二的，用 the；方位名词前也用 the。",
+          "time_limit": 10,
+          "coin_reward": 10
+        }
+      }
+    ]
+  },
+  {
+    "name": "vocab_animals",
+    "display_name": "动物乐园",
+    "category": "vocab",
+    "difficulty": 1,
+    "boss_name": "词海巨怪·幼体",
+    "boss_hp": 5,
+    "sort_order": 10,
+    "questions": [
+      {
+        "question_type": "vocab_shoot",
+        "difficulty": 1,
+        "content": {
+          "chinese": "大象",
+          "correct_word": "elephant",
+          "options": ["elephant", "elevator", "element", "eleven"],
+          "time_limit": 6,
+          "coin_reward": 8
+        }
+      },
+      {
+        "question_type": "vocab_shoot",
+        "difficulty": 1,
+        "content": {
+          "chinese": "长颈鹿",
+          "correct_word": "giraffe",
+          "options": ["giraffe", "gift", "garden", "giant"],
+          "time_limit": 6,
+          "coin_reward": 8
+        }
+      },
+      {
+        "question_type": "vocab_shoot",
+        "difficulty": 1,
+        "content": {
+          "chinese": "企鹅",
+          "correct_word": "penguin",
+          "options": ["penguin", "pencil", "panda", "person"],
+          "time_limit": 6,
+          "coin_reward": 8
+        }
+      }
+    ]
+  }
+]

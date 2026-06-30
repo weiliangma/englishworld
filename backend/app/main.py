@@ -12,6 +12,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 注册路由 — 直接导入router对象
+from app.routers.learning import router as learning_router
+from app.routers.pet import router as pet_router
+from app.routers.review import router as review_router
+
+app.include_router(learning_router)
+app.include_router(pet_router)
+app.include_router(review_router)
+
 
 @app.on_event("startup")
 def on_startup():
