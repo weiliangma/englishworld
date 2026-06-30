@@ -16,10 +16,12 @@ app.add_middleware(
 from app.routers.learning import router as learning_router
 from app.routers.pet import router as pet_router
 from app.routers.review import router as review_router
+from app.routers.reading import router as reading_router
 
 app.include_router(learning_router)
 app.include_router(pet_router)
 app.include_router(review_router)
+app.include_router(reading_router)
 
 
 @app.on_event("startup")

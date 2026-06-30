@@ -1,0 +1,211 @@
+[
+  {
+    "floor_number": 1,
+    "difficulty": 1,
+    "title": "The Amazing Octopus",
+    "category": "animals",
+    "passage_text": "The octopus is one of the smartest animals in the ocean. It has eight arms and can change its color to hide from enemies. Octopuses can also solve puzzles and open jars to get food. Some scientists say octopuses are as smart as dogs. They have three hearts and blue blood. When an octopus loses an arm, it can grow a new one. Octopuses live alone and are very good at escaping from tanks in aquariums.",
+    "word_count": 78,
+    "word_hints": "[{\"word\":\"octopus\",\"meaning\":\"章鱼\"},{\"word\":\"enemy\",\"meaning\":\"敌人\"},{\"word\":\"puzzle\",\"meaning\":\"谜题\"},{\"word\":\"aquarium\",\"meaning\":\"水族馆\"},{\"word\":\"escape\",\"meaning\":\"逃跑\"}]",
+    "fun_fact": "Octopuses have been known to open jars from the inside to escape!",
+    "is_boss": 0,
+    "questions": [
+      {
+        "question_type": "reading_choice",
+        "question_text": "How many hearts does an octopus have?",
+        "options": "{\"A\":\"One\",\"B\":\"Two\",\"C\":\"Three\",\"D\":\"Eight\"}",
+        "correct_answer": "C",
+        "explanation": "The passage says octopuses have three hearts.",
+        "sort_order": 1
+      },
+      {
+        "question_type": "reading_true_false",
+        "question_text": "Octopuses can change their color to hide from enemies.",
+        "options": "{\"True\":\"正确\",\"False\":\"错误\"}",
+        "correct_answer": "True",
+        "explanation": "The passage says the octopus can change its color to hide from enemies.",
+        "sort_order": 2
+      },
+      {
+        "question_type": "reading_choice",
+        "question_text": "What can an octopus do when it loses an arm?",
+        "options": "{\"A\":\"It cannot move\",\"B\":\"It grows a new one\",\"C\":\"It stops eating\",\"D\":\"It changes color\"}",
+        "correct_answer": "B",
+        "explanation": "The passage says when an octopus loses an arm, it can grow a new one.",
+        "sort_order": 3
+      },
+      {
+        "question_type": "reading_short_answer",
+        "question_text": "What color is an octopus's blood?",
+        "options": "{}",
+        "correct_answer": "blue",
+        "explanation": "The passage says octopuses have blue blood.",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "floor_number": 2,
+    "difficulty": 1,
+    "title": "History of Video Games",
+    "category": "technology",
+    "passage_text": "Video games have come a long way since the 1970s. The first popular video game was Pong, a simple tennis game released in 1972. In the 1980s, games like Pac-Man and Super Mario became famous all over the world. Today, video games are more realistic than ever. People can play games on phones, computers, and VR headsets. Some people make money by playing games professionally, called e-sports. Video games are also used in schools to help students learn.",
+    "word_count": 80,
+    "word_hints": "[{\"word\":\"release\",\"meaning\":\"发布\"},{\"word\":\"realistic\",\"meaning\":\"逼真的\"},{\"word\":\"professional\",\"meaning\":\"职业的\"},{\"word\":\"e-sports\",\"meaning\":\"电子竞技\"}]",
+    "fun_fact": "The first video game ever created was 'Tennis for Two' in 1958, not Pong!",
+    "is_boss": 0,
+    "questions": [
+      {
+        "question_type": "reading_choice",
+        "question_text": "What was the first popular video game mentioned in the passage?",
+        "options": "{\"A\":\"Pac-Man\",\"B\":\"Pong\",\"C\":\"Super Mario\",\"D\":\"Tennis for Two\"}",
+        "correct_answer": "B",
+        "explanation": "The passage says Pong was the first popular video game, released in 1972.",
+        "sort_order": 1
+      },
+      {
+        "question_type": "reading_true_false",
+        "question_text": "Video games are now used in schools to help students learn.",
+        "options": "{\"True\":\"正确\",\"False\":\"错误\"}",
+        "correct_answer": "True",
+        "explanation": "The passage says video games are also used in schools to help students learn.",
+        "sort_order": 2
+      },
+      {
+        "question_type": "reading_choice",
+        "question_text": "What does the passage say about e-sports?",
+        "options": "{\"A\":\"They are only for children\",\"B\":\"People make money playing games professionally\",\"C\":\"They started in the 1970s\",\"D\":\"They are not popular\"}",
+        "correct_answer": "B",
+        "explanation": "The passage states that some people make money by playing games professionally, called e-sports.",
+        "sort_order": 3
+      }
+    ]
+  },
+  {
+    "floor_number": 3,
+    "difficulty": 2,
+    "title": "Yao Ming: A Basketball Legend",
+    "category": "sports",
+    "passage_text": "Yao Ming is one of the most famous Chinese basketball players in history. He was born in Shanghai in 1980. Both of his parents were basketball players, so he grew up loving the sport. Yao Ming played for the Shanghai Sharks in China before joining the NBA's Houston Rockets in 2002. He was 2.26 meters tall, which made him one of the tallest players in NBA history. Yao Ming was selected for the NBA All-Star game eight times. After retiring in 2011, he became the president of the Chinese Basketball Association. He also works to help pandas and other animals through his charity work.",
+    "word_count": 110,
+    "word_hints": "[{\"word\":\"legend\",\"meaning\":\"传奇\"},{\"word\":\"selected\",\"meaning\":\"入选\"},{\"word\":\"All-Star\",\"meaning\":\"全明星\"},{\"word\":\"retire\",\"meaning\":\"退役\"},{\"word\":\"charity\",\"meaning\":\"慈善\"}]",
+    "fun_fact": "Yao Ming's shoes were size 18 — that's about 36 cm long!",
+    "is_boss": 0,
+    "questions": [
+      {
+        "question_type": "reading_choice",
+        "question_text": "When did Yao Ming join the NBA?",
+        "options": "{\"A\":\"1980\",\"B\":\"2002\",\"C\":\"2011\",\"D\":\"1998\"}",
+        "correct_answer": "B",
+        "explanation": "The passage says Yao Ming joined the Houston Rockets in 2002.",
+        "sort_order": 1
+      },
+      {
+        "question_type": "reading_true_false",
+        "question_text": "Yao Ming was selected for the NBA All-Star game eight times.",
+        "options": "{\"True\":\"正确\",\"False\":\"错误\"}",
+        "correct_answer": "True",
+        "explanation": "The passage states Yao Ming was selected for the NBA All-Star game eight times.",
+        "sort_order": 2
+      },
+      {
+        "question_type": "reading_short_answer",
+        "question_text": "How tall is Yao Ming in meters?",
+        "options": "{}",
+        "correct_answer": "2.26",
+        "explanation": "The passage says Yao Ming was 2.26 meters tall.",
+        "sort_order": 3
+      },
+      {
+        "question_type": "reading_choice",
+        "question_text": "What position does Yao Ming hold after retiring?",
+        "options": "{\"A\":\"NBA coach\",\"B\":\"President of the Chinese Basketball Association\",\"C\":\"Sports commentator\",\"D\":\"Basketball teacher\"}",
+        "correct_answer": "B",
+        "explanation": "After retiring, Yao Ming became the president of the Chinese Basketball Association.",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "floor_number": 4,
+    "difficulty": 2,
+    "title": "Why Do Cats Purr?",
+    "category": "animals",
+    "passage_text": "Many people think cats only purr when they are happy, but that is not the whole story. Cats also purr when they are nervous, sick, or giving birth. Scientists believe purring helps cats heal themselves. The frequency of a cat's purr — between 20 and 150 Hertz — can help repair bones and muscles. This might be why cats seem to recover from injuries faster than dogs. Kittens start purring when they are just a few days old. They purr to tell their mother that they are okay. Mother cats also purr to guide their kittens.",
+    "word_count": 95,
+    "word_hints": "[{\"word\":\"purr\",\"meaning\":\"发出呼噜声\"},{\"word\":\"nervous\",\"meaning\":\"紧张的\"},{\"word\":\"frequency\",\"meaning\":\"频率\"},{\"word\":\"repair\",\"meaning\":\"修复\"},{\"word\":\"recover\",\"meaning\":\"恢复\"}]",
+    "fun_fact": "A cat's purr vibrates at a frequency that can help heal human bones too!",
+    "is_boss": 0,
+    "questions": [
+      {
+        "question_type": "reading_choice",
+        "question_text": "What is the frequency range of a cat's purr?",
+        "options": "{\"A\":\"10 to 50 Hertz\",\"B\":\"20 to 150 Hertz\",\"C\":\"50 to 200 Hertz\",\"D\":\"100 to 300 Hertz\"}",
+        "correct_answer": "B",
+        "explanation": "The passage says a cat's purr is between 20 and 150 Hertz.",
+        "sort_order": 1
+      },
+      {
+        "question_type": "reading_true_false",
+        "question_text": "Cats only purr when they are happy.",
+        "options": "{\"True\":\"正确\",\"False\":\"错误\"}",
+        "correct_answer": "False",
+        "explanation": "The passage says cats also purr when they are nervous, sick, or giving birth.",
+        "sort_order": 2
+      },
+      {
+        "question_type": "reading_short_answer",
+        "question_text": "At what age do kittens start purring?",
+        "options": "{}",
+        "correct_answer": "a few days old",
+        "explanation": "The passage says kittens start purring when they are just a few days old.",
+        "sort_order": 3
+      },
+      {
+        "question_type": "reading_choice",
+        "question_text": "Why might cats recover from injuries faster than dogs?",
+        "options": "{\"A\":\"Cats sleep more\",\"B\":\"Purring helps heal bones and muscles\",\"C\":\"Cats eat healthier food\",\"D\":\"Cats exercise more\"}",
+        "correct_answer": "B",
+        "explanation": "The passage suggests purring helps cats heal themselves by repairing bones and muscles.",
+        "sort_order": 4
+      }
+    ]
+  },
+  {
+    "floor_number": 5,
+    "difficulty": 3,
+    "title": "The Smartphone Revolution",
+    "category": "technology",
+    "passage_text": "The first smartphone was introduced by IBM in 1994, but it was very different from today's phones. It had a touchscreen but no apps. The real smartphone revolution began in 2007 when Apple released the iPhone. The iPhone combined a phone, an iPod, and an internet device into one product. It had a large touchscreen and could run third-party applications. This changed how people communicate, work, and entertain themselves. Today, more than 3 billion people use smartphones worldwide. Modern smartphones have cameras better than some professional cameras, and they can connect to 5G networks. However, smartphone addiction has become a serious problem, especially among young people.",
+    "word_count": 115,
+    "word_hints": "[{\"word\":\"introduce\",\"meaning\":\"推出\"},{\"word\":\"revolution\",\"meaning\":\"革命\"},{\"word\":\"combine\",\"meaning\":\"结合\"},{\"word\":\"third-party\",\"meaning\":\"第三方的\"},{\"word\":\"addiction\",\"meaning\":\"上瘾\"}]",
+    "fun_fact": "The first smartphone (IBM Simon) cost $899 in 1994 — that's about $1,800 today!",
+    "is_boss": 1,
+    "questions": [
+      {
+        "question_type": "reading_choice",
+        "question_text": "Which company released the phone that started the smartphone revolution in 2007?",
+        "options": "{\"A\":\"IBM\",\"B\":\"Samsung\",\"C\":\"Apple\",\"D\":\"Nokia\"}",
+        "correct_answer": "C",
+        "explanation": "The passage says Apple released the iPhone in 2007, which started the real smartphone revolution.",
+        "sort_order": 1
+      },
+      {
+        "question_type": "reading_true_false",
+        "question_text": "More than 3 billion people use smartphones worldwide today.",
+        "options": "{\"True\":\"正确\",\"False\":\"错误\"}",
+        "correct_answer": "True",
+        "explanation": "The passage states that more than 3 billion people use smartphones worldwide.",
+        "sort_order": 2
+      },
+      {
+        "question_type": "reading_choice",
+        "question_text": "What problem is mentioned about smartphones in the passage?",
+        "options": "{\"A\":\"They are too expensive\",\"B\":\"Smartphone addiction among young people\",\"C\":\"The batteries don't last long\",\"D\":\"They are too heavy\"}",
+        "correct_answer": "B",
+        "explanation": "The passage says smartphone addiction has become a serious problem, especially among young people.",
+        "sort_order": 3
+      }
+    ]
+  }
+]

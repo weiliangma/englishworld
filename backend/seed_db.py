@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from app.database import engine, Base, SessionLocal
 from app.models.question import Skill, Question
+from app.models.reading import ReadingTowerFloor, ReadingQuestion
 from app.models.pet import Pet, PetStats, PetHomeItem
 from app.models.user import UserStats
 from app.models.question import ReviewSchedule, Achievement, UserAchievement
@@ -48,7 +49,31 @@ def seed():
         db.add(item)
     print("✅ 宠物商店初始化")
 
-    # 4. 技能点 + 题目
+    # 4. 阅读塔种子数据
+    with open(os.path.join(os.path.dirname(__file__), "app", "seed", "reading_data.json"), "r") as f:
+        reading_data = json.load(f)
+
+    for rd in reading_data:
+        questions = rd.pop("questions", [])
+        floor = ReadingTowerFloor(**rd)
+        db.add(floor)
+        db.flush()  # 获取 floor.id
+
+        for qd in questions:
+            q = ReadingQuestion(
+                floor_id=floor.id,
+                question_type=qd["question_type"],
+                question_text=qd["question_text"],
+                options=qd["options"],
+                correct_answer=qd["correct_answer"],
+                explanation=qd.get("explanation"),
+                sort_order=qd.get("sort_order", 0),
+            )
+            db.add(q)
+
+    print(f"✅ {len(reading_data)} 个阅读塔楼层初始化")
+
+    # 5. 技能点 + 题目
     with open(os.path.join(os.path.dirname(__file__), "app", "seed", "skills_data.json"), "r") as f:
         skills_data = json.load(f)
 
